@@ -29,7 +29,8 @@ class SearchTools():
                 try:
                     string.append('\n'.join([
                         f"Title: {result['title']}", f"Link: {result['link']}",
-                        f"Snippet: {result['snippet']}", "\n-----------------"
+                        f"Snippet: {result['snippet']}", "\n-----------------",
+
                     ]))
                 except KeyError:
                     next

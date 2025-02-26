@@ -17,6 +17,8 @@ localdate= today.strftime("%x")
 
 
 
+
+
 class ESGCrew:
     def __init__(self, date, interests):
         self.date = date
@@ -28,8 +30,10 @@ class ESGCrew:
         tasks = ESGTasks()
 
         # Define your custom agents and tasks here
-        esg_news_reporter = agents.esg_news_reporter()
         esg_news_researcher = agents.esg_news_researcher()
+        esg_news_reporter = agents.esg_news_reporter()
+        esg_news_detailer = agents.esg_news_detailer()
+        
 
         # Custom tasks include agent name and variables as input
         write_esg_report = tasks.write_esg_report(
@@ -44,15 +48,21 @@ class ESGCrew:
             self.interests
         )
 
+        summarise_news = tasks.summarise_news(
+            esg_news_detailer,
+            self.interests
+        )
+
 
         # Define your custom crew here
         crew = Crew(
-            agents=[esg_news_reporter, esg_news_researcher],
-            tasks=[gather_news, write_esg_report],
+            agents=[esg_news_researcher,esg_news_reporter,esg_news_detailer],
+            tasks=[write_esg_report,gather_news,summarise_news],
             verbose=True,
         )
 
         result = crew.kickoff()
+        
         return result
 
 

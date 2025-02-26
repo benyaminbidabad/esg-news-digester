@@ -12,7 +12,7 @@ class ESGTasks:
                 **Task**: Develope a Comprehensive ESG Report
                 **Description**: Write a comprehensive ESG report based on today's news, focusing on the finance industry,
                 covering the latest trends, developments, targets published by other banks, and political news impacting ESG and financial institutions.
-                The report should look like a morning digest for the chief sustainability officer of Societe Generale. If any additional intrests are provided, the report should include those as well, but make sure to only include information related to ESG.
+                The report should look like a morning digest for the chief sustainability officer of Societe Generale. It should be storytelling and pleasurable to read. If any additional intrests are provided, the report should include those as well, but make sure to only include information related to ESG.
                 If Societe Generale has been mentioned negatively in a news article, this should be highlited.
                 If any competitor, such as BNP, Credit Agricole, or La Banque postale or any other NZBA bank, is mentioned positively or negatively, this should also be highlighted.
                 Include read more links to the original articles so that the CSO can read more if they want to.
@@ -46,5 +46,24 @@ class ESGTasks:
                 """
                 ),
             expected_output="A list of news articles that are relevant to ESG and the finance industry, focusing on Societe Generale and other financial institutions.",    
+            agent=agent,
+        )
+    def summarise_news(self, agent, interests):
+        return Task(
+            description=dedent(
+                f"""
+                    **Task**:  Read the articles and summarise them
+                    **Description**: You will read the articles provided by the ESG News Researcher and summarise them in a concise and informative manner.
+                    The sumary should be easy to read and understand, and should include the most important points of the article. It should be of interest to hte chief sustainability officer of Societe Generale.
+                    If any additional interests are provided, the summary should include those as well.
+
+
+                        **Parameters**: 
+                        - Additional Interests: {interests}
+
+                        **Note**: {self.__tip_section()}
+                """
+                ),
+            expected_output="A summary of the articles focusing on the most important points to the eyes of the CSO of Societe Generale.",    
             agent=agent,
         )
