@@ -6,6 +6,7 @@ It is a simple demonstraton of how multi agents systems allow to build dynamic w
 1- Install Poetry
 
 2- Run the following command in the directory of the code 
+
 <code> poetry install </code>
 
 
